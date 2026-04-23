@@ -1,126 +1,259 @@
-# Contribution Guide
+# Contributing to VaultX
 
-Thanks for your interest in contributing to VaultX.
+Thanks for investing your time in VaultX.  
+This guide explains how to contribute effectively, safely, and in a reviewer-friendly way.
 
-This guide covers how to report issues, propose changes, and submit pull requests in a way that keeps the project secure and maintainable.
+---
 
-## Code of Conduct
+## Table of Contents
 
-- Be respectful and constructive.
-- Focus on technical outcomes.
-- Assume positive intent.
+- [Project Values](#project-values)
+- [Contribution Workflow](#contribution-workflow)
+- [Visual Workflow Diagram](#visual-workflow-diagram)
+- [Issue Guidelines](#issue-guidelines)
+- [Development Setup](#development-setup)
+- [Branching Strategy](#branching-strategy)
+- [Commit Standards](#commit-standards)
+- [Pull Request Checklist](#pull-request-checklist)
+- [Code Quality Expectations](#code-quality-expectations)
+- [Security Requirements](#security-requirements)
+- [Documentation Requirements](#documentation-requirements)
+- [Testing Policy](#testing-policy)
+- [Review and Merge Process](#review-and-merge-process)
+- [Good First Contributions](#good-first-contributions)
+- [Code of Conduct](#code-of-conduct)
 
-## Ways to Contribute
+---
 
-- Report bugs
-- Improve documentation
-- Add tests
-- Improve UX/accessibility
-- Fix security and stability issues
-- Implement approved features
+## Project Values
 
-## Before You Start
+VaultX contributions should optimize for:
 
-1. Check existing issues/PRs to avoid duplicates.
-2. For larger changes, open an issue first and discuss approach.
-3. Keep PRs focused and scoped to one logical change.
+1. **Security first** (especially around auth, encryption, and storage)
+2. **Clarity** (easy to read and review)
+3. **Reliability** (tested and reproducible)
+4. **Beginner-friendliness** (new contributors can follow your work)
 
-## Local Development Setup
+---
 
-1. Fork and clone the repository.
-2. Open the project in Android Studio.
-3. Add your own Firebase config at `app/google-services.json` (never commit it).
-4. Sync Gradle and verify build:
+## Contribution Workflow
+
+1. Check open issues and discussions first.
+2. For significant changes, open an issue before coding.
+3. Fork repo and create a focused branch.
+4. Implement change with tests/docs updates.
+5. Run local checks.
+6. Open PR with clear context and evidence.
+7. Address review feedback quickly and clearly.
+
+---
+
+## Visual Workflow Diagram
+
+```mermaid
+flowchart LR
+    A[Find or Create Issue] --> B[Fork and Branch]
+    B --> C[Implement Change]
+    C --> D[Run Build/Test/Lint]
+    D --> E[Open Pull Request]
+    E --> F[Code Review]
+    F --> G[Revise if needed]
+    G --> F
+    F --> H[Merge]
+```
+
+---
+
+## Issue Guidelines
+
+When creating an issue:
+
+- Use a clear title
+- Explain expected vs actual behavior
+- Add reproduction steps
+- Share environment details (Android version, emulator/device)
+- Include screenshots/log snippets when relevant
+
+For feature requests:
+
+- Explain the problem first, then proposed solution
+- Mention trade-offs and alternatives if possible
+
+---
+
+## Development Setup
+
+1. Fork and clone repository.
+2. Open in Android Studio.
+3. Add local Firebase config: `app/google-services.json`.
+4. Sync Gradle.
+5. Validate setup:
    - `./gradlew.bat :app:assembleDebug`
 
-## Branching Convention
+If your contribution touches Firestore behavior, verify rules/index deployment in your test project.
 
-- Create a feature branch from `main`.
-- Suggested branch names:
-  - `feat/<short-description>`
-  - `fix/<short-description>`
-  - `docs/<short-description>`
-  - `chore/<short-description>`
+---
 
-## Commit Message Style
+## Branching Strategy
 
-Use clear, intent-based commits:
+- Base branch: `main`
+- Keep one logical change per branch
+- Recommended names:
+  - `feat/<short-topic>`
+  - `fix/<short-topic>`
+  - `refactor/<short-topic>`
+  - `docs/<short-topic>`
+  - `test/<short-topic>`
 
-- `feat: add clipboard auto-clear timeout`
-- `fix: prevent stale auth state after logout`
-- `docs: update Firebase setup section`
+Examples:
 
-Try to keep commits atomic and easy to review.
+- `feat/password-strength-meter`
+- `fix/google-auth-cancel-state`
+- `docs/newbie-install-guide`
 
-## Pull Request Requirements
+---
 
-Each PR should include:
+## Commit Standards
 
-- Problem statement and why the change is needed
-- Summary of what changed
-- Screenshots/video for UI changes (if applicable)
-- Testing notes (what you ran and result)
-- Security impact (if auth, crypto, storage, or rules were touched)
+Use conventional-style intent prefixes:
 
-## Testing Expectations
+- `feat:` new functionality
+- `fix:` bug fix
+- `docs:` documentation updates
+- `refactor:` non-functional code cleanup
+- `test:` test additions/updates
+- `chore:` tooling/build/meta tasks
 
-Run applicable checks before opening a PR:
+Examples:
 
-- `./gradlew.bat :app:assembleDebug`
-- `./gradlew.bat test`
-- `./gradlew.bat lint`
+- `feat: add secure clipboard timeout preference`
+- `fix: block empty password save in edit flow`
+- `docs: expand README architecture section`
 
-If a check cannot be run locally, mention it clearly in the PR.
+Keep commits small and explain **why** in the body when needed.
 
-## Security Contribution Rules (Important)
+---
 
-- Never commit real credentials, API keys, keystores, or tokens.
-- Never commit `google-services.json`, `local.properties`, or signing config files.
-- Do not log secrets, plaintext passwords, auth tokens, or full user payloads.
-- Keep encryption/decryption logic changes small, reviewed, and tested.
-- Any Firestore rule change must include explanation and validation examples.
+## Pull Request Checklist
 
-## Sensitive Files To Keep Out of Git
+Your PR should include:
+
+- Clear summary of problem and solution
+- Scope boundaries (what is included/not included)
+- Screenshots/video for UI changes
+- Testing evidence
+- Security impact analysis if relevant
+- Rollback notes for risky changes
+
+Use this mini template:
+
+```text
+## What
+## Why
+## How
+## Test plan
+## Risks
+## Follow-ups
+```
+
+---
+
+## Code Quality Expectations
+
+- Write Kotlin that is explicit and null-safe
+- Keep Fragments thin; push logic to ViewModel/Repository
+- Reuse existing `Resource` state pattern
+- Avoid duplicate utility logic
+- Prefer composable functions over large monolith methods
+- Remove dead code and stale TODOs when touching related areas
+
+---
+
+## Security Requirements
+
+Security is mandatory in this project.  
+Any PR touching auth, crypto, persistence, or cloud access gets stricter review.
+
+### Never commit
 
 - `app/google-services.json`
 - `google-services.json`
 - `local.properties`
-- `*.jks`, `*.keystore`, `*.p12`
 - `keystore.properties`
-- any `.env*` containing secrets
+- `*.jks`, `*.keystore`, `*.p12`
+- tokens, private keys, secret env files
 
-## Style and Architecture Guidelines
+### Never do
 
-- Kotlin-first, readable, and null-safe code.
-- Prefer small functions and explicit naming.
-- Keep business logic in repositories/ViewModels, not Fragments.
-- Use existing `Resource` state pattern for async UI state.
-- Avoid introducing new architecture patterns without discussion.
+- Log plaintext passwords or tokens
+- Store raw password values in Firestore
+- Loosen Firestore rules without justification + tests
+- Disable security checks for convenience
 
-## Documentation Updates
+### If touching encryption/auth
 
-If your change affects setup, architecture, or behavior, update relevant docs:
+- Explain threat impact in PR
+- Add or update tests
+- Keep changes scoped and reviewer-friendly
 
-- `README.md`
-- `FIREBASE_SETUP.md`
-- `FIRESTORE_SCHEMA.md`
-- this file (`Contribution.md`)
+---
 
-## How to Report Security Issues
+## Documentation Requirements
 
-If you discover a security vulnerability, do **not** open a public issue with exploit details.
+Update docs when behavior changes:
 
-Instead:
+- `README.md` for user-facing behavior/setup
+- `FIREBASE_SETUP.md` for config changes
+- `FIRESTORE_SCHEMA.md` for model/schema changes
+- `Contribution.md` for process updates
 
-1. Open a minimal issue indicating a security concern exists, without sensitive details.
-2. Ask maintainers for a private channel to share full reproduction and impact.
+If docs are not updated, mention why in PR.
 
-## Review Checklist (For Contributors)
+---
 
-- [ ] Build succeeds locally
-- [ ] Tests/lint run or rationale provided
-- [ ] No secrets or generated artifacts included
-- [ ] Documentation updated when needed
-- [ ] PR description clearly explains risk and rollout
+## Testing Policy
 
-Thanks for helping improve VaultX.
+Before opening a PR, run as many as applicable:
+
+- `./gradlew.bat :app:assembleDebug`
+- `./gradlew.bat test`
+- `./gradlew.bat lint`
+- `./gradlew.bat connectedAndroidTest` (if device/emulator available)
+
+In PR description:
+
+- list commands executed
+- mention pass/fail status
+- include rationale for skipped tests
+
+---
+
+## Review and Merge Process
+
+1. Maintainers review for correctness, design, and security.
+2. You address comments with focused follow-up commits.
+3. Once approved and checks pass, PR is merged.
+4. Squash/rebase strategy depends on maintainer preference.
+
+---
+
+## Good First Contributions
+
+If you are new, start with:
+
+- improving error messages and validation text
+- README screenshots and onboarding docs
+- unit tests for ViewModels/repositories
+- minor UI consistency fixes
+- small accessibility improvements (content descriptions, contrast checks)
+
+---
+
+## Code of Conduct
+
+- Be respectful in technical discussions
+- Critique code, not people
+- Keep feedback specific and constructive
+- Help newcomers ramp up
+
+Thanks for contributing to VaultX and helping make secure software more accessible.
