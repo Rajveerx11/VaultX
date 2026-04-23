@@ -1,0 +1,54 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base VaultX Theme: Cyberpunk Dark -->
+    <style name="Base.Theme.VaultX" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary (Cyan) -->
+        <item name="colorPrimary">@color/vx_cyan</item>
+        <item name="colorOnPrimary">@color/vx_background</item>
+        <item name="colorPrimaryContainer">@color/vx_cyan_dim</item>
+        <item name="colorOnPrimaryContainer">@color/vx_cyan_light</item>
+
+        <!-- Secondary (Purple) -->
+        <item name="colorSecondary">@color/vx_purple</item>
+        <item name="colorOnSecondary">@color/vx_background</item>
+        <item name="colorSecondaryContainer">@color/vx_purple_dim</item>
+        <item name="colorOnSecondaryContainer">@color/vx_purple_light</item>
+
+        <!-- Error (Red) -->
+        <item name="colorError">@color/vx_red</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorErrorContainer">@color/vx_red_dim</item>
+
+        <!-- Backgrounds & Surfaces -->
+        <item name="android:colorBackground">@color/vx_background</item>
+        <item name="colorSurface">@color/vx_surface</item>
+        <item name="colorSurfaceVariant">@color/vx_surface_container</item>
+        <item name="colorOnSurface">@color/vx_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/vx_text_secondary</item>
+        <item name="colorOutline">@color/vx_outline</item>
+        <item name="colorOutlineVariant">@color/vx_divider</item>
+        <item name="colorSurfaceContainerHigh">@color/vx_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/vx_surface_container_highest</item>
+
+        <!-- System Bars -->
+        <item name="android:statusBarColor">@color/vx_status_bar</item>
+        <item name="android:navigationBarColor">@color/vx_nav_bar</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <!-- Text -->
+        <item name="android:textColorPrimary">@color/vx_text_primary</item>
+        <item name="android:textColorSecondary">@color/vx_text_secondary</item>
+        <item name="android:textColorHint">@color/vx_text_muted</item>
+
+        <!-- Ripple -->
+        <item name="colorControlHighlight">@color/vx_ripple</item>
+    </style>
+
+    <style name="Theme.VaultX" parent="Base.Theme.VaultX" />
+
+    <!-- Splash Theme (no animation lag) -->
+    <style name="Theme.VaultX.Splash" parent="Theme.VaultX">
+        <item name="android:windowBackground">@color/vx_background</item>
+    </style>
+
+</resources>

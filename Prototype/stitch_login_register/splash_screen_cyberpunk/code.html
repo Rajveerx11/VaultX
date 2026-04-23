@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VAULTX - Secure Entry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#76747b",
+              "outline-variant": "#48474d",
+              "tertiary": "#65afff",
+              "on-secondary-container": "#dac8ff",
+              "surface-container-lowest": "#000000",
+              "on-tertiary-fixed-variant": "#003b68",
+              "on-tertiary": "#002e52",
+              "surface-dim": "#0e0e13",
+              "on-primary-fixed": "#003f43",
+              "primary-container": "#00eefc",
+              "on-error": "#490006",
+              "on-background": "#f8f5fd",
+              "secondary-dim": "#ad89ff",
+              "surface-bright": "#2c2b33",
+              "tertiary-dim": "#4aa2f9",
+              "on-tertiary-fixed": "#001930",
+              "tertiary-fixed": "#72b5ff",
+              "on-secondary-fixed": "#420099",
+              "secondary": "#ad89ff",
+              "surface-container": "#19191f",
+              "on-primary-fixed-variant": "#005e64",
+              "primary": "#8ff5ff",
+              "on-error-container": "#ffa8a3",
+              "on-secondary": "#290066",
+              "surface-container-high": "#1f1f26",
+              "tertiary-container": "#4aa2f9",
+              "error-dim": "#d7383b",
+              "secondary-fixed-dim": "#cfb8ff",
+              "on-surface-variant": "#acaab1",
+              "primary-fixed-dim": "#00deec",
+              "inverse-surface": "#fbf8ff",
+              "surface-container-low": "#131318",
+              "inverse-on-surface": "#55545a",
+              "secondary-fixed": "#dbc9ff",
+              "primary-dim": "#00deec",
+              "primary-fixed": "#00eefc",
+              "background": "#0e0e13",
+              "tertiary-fixed-dim": "#51a7fe",
+              "error": "#ff716c",
+              "inverse-primary": "#006a71",
+              "surface-container-highest": "#25252c",
+              "surface-variant": "#25252c",
+              "on-surface": "#f8f5fd",
+              "error-container": "#9f0519",
+              "surface": "#0e0e13",
+              "on-tertiary-container": "#00213e",
+              "secondary-container": "#561cb7",
+              "on-secondary-fixed-variant": "#602cc1",
+              "surface-tint": "#8ff5ff",
+              "on-primary": "#005d63",
+              "on-primary-container": "#005359"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+        }
+        .hex-grid {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%238ff5ff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+        }
+        .radial-glow {
+            background: radial-gradient(circle, rgba(173, 137, 255, 0.15) 0%, rgba(13, 13, 18, 0) 70%);
+        }
+        .ring-pulse {
+            border: 1px solid rgba(143, 245, 255, 0.1);
+            border-radius: 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim text-on-surface font-body m-0 p-0 overflow-hidden select-none">
+<div class="relative w-screen h-screen flex flex-col items-center justify-center bg-surface-dim hex-grid">
+<div class="absolute inset-0 radial-glow pointer-events-none"></div>
+<div class="relative flex items-center justify-center w-80 h-80">
+<div class="absolute inset-0 ring-pulse scale-75 opacity-20"></div>
+<div class="absolute inset-0 ring-pulse scale-90 opacity-40"></div>
+<div class="absolute inset-0 ring-pulse scale-100 opacity-60"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full border-t border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<div class="w-full h-full border-b border-secondary/20 rounded-full animate-[spin_15s_linear_reverse_infinite]"></div>
+</div>
+<div class="relative z-10 flex items-center justify-center bg-surface-container-highest/20 backdrop-blur-2xl rounded-full p-8 shadow-[0_0_50px_rgba(143,245,255,0.15)] border border-white/5">
+<span class="material-symbols-outlined text-8xl text-primary drop-shadow-[0_0_15px_rgba(143,245,255,0.8)]" style="font-variation-settings: 'FILL' 0, 'wght' 100;">
+                    shield
+                </span>
+</div>
+</div>
+<div class="mt-16 flex flex-col items-center space-y-4">
+<h1 class="font-headline font-bold text-6xl tracking-[0.2em] text-on-surface drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                VAULTX
+            </h1>
+<div class="flex items-center space-x-3">
+<div class="h-[1px] w-8 bg-gradient-to-r from-transparent to-primary/40"></div>
+<p class="font-label text-xs uppercase tracking-[0.4em] text-on-surface-variant">
+                    ENCRYPTED. SECURED. YOURS.
+                </p>
+<div class="h-[1px] w-8 bg-gradient-to-l from-transparent to-primary/40"></div>
+</div>
+</div>
+<div class="absolute bottom-12 flex flex-col items-center space-y-2">
+<div class="w-12 h-[2px] bg-white/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/60 w-1/3 animate-[slide_2s_ease-in-out_infinite]" style="animation: scan 1.5s linear infinite;"></div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary/40">Initializing Neural Link...</span>
+</div>
+<div class="fixed top-8 left-8 flex flex-col gap-1">
+<div class="w-1 h-1 bg-primary/20"></div>
+<div class="w-1 h-1 bg-primary/40"></div>
+<div class="w-1 h-1 bg-primary/20"></div>
+</div>
+<div class="fixed bottom-8 right-8 flex flex-col gap-1 items-end">
+<div class="w-8 h-[1px] bg-outline-variant/30"></div>
+<div class="w-4 h-[1px] bg-outline-variant/30"></div>
+</div>
+</div>
+<style>
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+    </style>
+</body></html>

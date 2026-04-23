@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <!-- Splash Screen -->
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.vaultx.ui.splash.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splash_to_auth"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splash_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Authentication (Login / Register) -->
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.vaultx.ui.auth.AuthFragment"
+        android:label="Authentication"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_auth_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Dashboard / Home -->
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.vaultx.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_addEdit"
+            app:destination="@id/addEditPasswordFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_detail"
+            app:destination="@id/passwordDetailFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_generator"
+            app:destination="@id/passwordGeneratorFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_settings"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_auth"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Add / Edit Password -->
+    <fragment
+        android:id="@+id/addEditPasswordFragment"
+        android:name="com.vaultx.ui.addedit.AddEditPasswordFragment"
+        android:label="Add Password"
+        tools:layout="@layout/fragment_add_edit_password">
+        <argument
+            android:name="passwordId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_addEdit_to_generator"
+            app:destination="@id/passwordGeneratorFragment" />
+    </fragment>
+
+    <!-- Password Detail -->
+    <fragment
+        android:id="@+id/passwordDetailFragment"
+        android:name="com.vaultx.ui.detail.PasswordDetailFragment"
+        android:label="Password Detail"
+        tools:layout="@layout/fragment_password_detail">
+        <argument
+            android:name="passwordId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detail_to_addEdit"
+            app:destination="@id/addEditPasswordFragment" />
+    </fragment>
+
+    <!-- Password Generator -->
+    <fragment
+        android:id="@+id/passwordGeneratorFragment"
+        android:name="com.vaultx.ui.generator.PasswordGeneratorFragment"
+        android:label="Password Generator"
+        tools:layout="@layout/fragment_password_generator" />
+
+    <!-- Settings / Profile -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.vaultx.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settings_to_auth"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
+

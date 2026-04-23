@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VAULTX | Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "outline": "#76747b",
+                "outline-variant": "#48474d",
+                "tertiary": "#65afff",
+                "on-secondary-container": "#dac8ff",
+                "surface-container-lowest": "#000000",
+                "on-tertiary-fixed-variant": "#003b68",
+                "on-tertiary": "#002e52",
+                "surface-dim": "#0e0e13",
+                "on-primary-fixed": "#003f43",
+                "primary-container": "#00eefc",
+                "on-error": "#490006",
+                "on-background": "#f8f5fd",
+                "secondary-dim": "#ad89ff",
+                "surface-bright": "#2c2b33",
+                "tertiary-dim": "#4aa2f9",
+                "on-tertiary-fixed": "#001930",
+                "tertiary-fixed": "#72b5ff",
+                "on-secondary-fixed": "#420099",
+                "secondary": "#ad89ff",
+                "surface-container": "#19191f",
+                "on-primary-fixed-variant": "#005e64",
+                "primary": "#8ff5ff",
+                "on-error-container": "#ffa8a3",
+                "on-secondary": "#290066",
+                "surface-container-high": "#1f1f26",
+                "tertiary-container": "#4aa2f9",
+                "error-dim": "#d7383b",
+                "secondary-fixed-dim": "#cfb8ff",
+                "on-surface-variant": "#acaab1",
+                "primary-fixed-dim": "#00deec",
+                "inverse-surface": "#fbf8ff",
+                "surface-container-low": "#131318",
+                "inverse-on-surface": "#55545a",
+                "secondary-fixed": "#dbc9ff",
+                "primary-dim": "#00deec",
+                "primary-fixed": "#00eefc",
+                "background": "#0e0e13",
+                "tertiary-fixed-dim": "#51a7fe",
+                "error": "#ff716c",
+                "inverse-primary": "#006a71",
+                "surface-container-highest": "#25252c",
+                "surface-variant": "#25252c",
+                "on-surface": "#f8f5fd",
+                "error-container": "#9f0519",
+                "surface": "#0e0e13",
+                "on-tertiary-container": "#00213e",
+                "secondary-container": "#561cb7",
+                "on-secondary-fixed-variant": "#602cc1",
+                "surface-tint": "#8ff5ff",
+                "on-primary": "#005d63",
+                "on-primary-container": "#005359"
+              },
+              fontFamily: {
+                "headline": ["Space Grotesk"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        .hex-grid-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(143, 245, 255, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 15px rgba(143, 245, 255, 0.3);
+        }
+        .purple-glow {
+            box-shadow: 0 0 15px rgba(173, 137, 255, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<div class="fixed inset-0 hex-grid-bg pointer-events-none"></div>
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,240,255,0.1)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-cyan-400 active:scale-95 duration-200 cursor-pointer">menu</span>
+</div>
+<div class="font-['Space_Grotesk'] text-xl font-bold tracking-widest text-cyan-400 drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] uppercase">
+            VAULTX
+        </div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white/40 hover:text-cyan-300 transition-colors duration-300 active:scale-95 duration-200 cursor-pointer">account_circle</span>
+</div>
+</nav>
+<!-- Content Canvas -->
+<main class="relative pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Profile Header Section -->
+<div class="flex flex-col items-center mb-12 text-center">
+<div class="relative mb-6">
+<div class="absolute inset-0 rounded-full border-2 border-primary animate-pulse cyan-glow"></div>
+<div class="p-1 rounded-full bg-background relative">
+<img class="w-32 h-32 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="portrait of a professional young man with short hair in a tech environment, sharp focus, cinematic soft neon cyan lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN8Rbw_-zN8S9AbVYvKWnc-YxZ4onBBMncFBZZOCsrPfAsynvXfkGe-Tfpg9SQXntMPir2alSUwEnf9AzC_SFgRN7lcENA5BUmWOnqxV-y9CGrbjmJ4NtRlbwvGz8HUacdlG_DE9KB3HTblDcqedPH-sLUFPOWp7aQ5iG4mgY7Wt3jICTccQxLZ48aPPhTnIzjTMhjReehjQODCzX_8gUEV-gbUtkhwUZDYo3XKwXfx53nLjJ3QxwOamKp-Wg1utbOexANqzWqilE"/>
+</div>
+</div>
+<h1 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-1">Alex Thompson</h1>
+<p class="font-label text-sm tracking-[0.1em] text-on-surface-variant uppercase">alex.t@vaultx.protocol</p>
+</div>
+<!-- Settings List -->
+<div class="space-y-4">
+<p class="font-label text-xs tracking-[0.2em] text-primary mb-2 uppercase opacity-60 px-2">Security Protocol</p>
+<!-- Item: Change Master Password -->
+<div class="glass-card flex items-center justify-between p-5 group cursor-pointer hover:bg-white/10 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center rounded bg-primary/10">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+</div>
+<div>
+<p class="text-sm font-medium">Change Master Password</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Last changed 42 days ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Item: App Lock (Toggle) -->
+<div class="glass-card flex items-center justify-between p-5 group transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center rounded bg-secondary/10">
+<span class="material-symbols-outlined text-secondary text-xl" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<div>
+<p class="text-sm font-medium">App Lock</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Biometric Authentication Active</p>
+</div>
+</div>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-secondary-container purple-glow cursor-pointer">
+<span class="inline-block h-4 w-4 translate-x-6 rounded-full bg-on-secondary-container transition"></span>
+</div>
+</div>
+<p class="font-label text-xs tracking-[0.2em] text-primary mb-2 mt-8 uppercase opacity-60 px-2">Environment</p>
+<!-- Item: Theme Toggle -->
+<div class="glass-card flex items-center justify-between p-5 group cursor-pointer hover:bg-white/10 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center rounded bg-outline-variant/20">
+<span class="material-symbols-outlined text-white/60 text-xl">dark_mode</span>
+</div>
+<div>
+<p class="text-sm font-medium">Theme</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Cyber-Obsidian (Dark)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">swap_horiz</span>
+</div>
+<!-- Item: About -->
+<div class="glass-card flex items-center justify-between p-5 group cursor-pointer hover:bg-white/10 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center rounded bg-outline-variant/20">
+<span class="material-symbols-outlined text-white/60 text-xl">info</span>
+</div>
+<div>
+<p class="text-sm font-medium">About</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Version 2.4.0-Stable</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Item: Logout -->
+<div class="flex items-center justify-center pt-10">
+<button class="flex items-center gap-2 px-8 py-3 rounded-lg border border-error/30 bg-error/5 hover:bg-error/10 text-[#FF4D6D] transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="font-headline font-bold uppercase tracking-widest text-xs">Terminate Session</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 bg-white/5 backdrop-blur-xl border-t border-white/10 shadow-[0_-5px_25px_rgba(0,0,0,0.5)] z-50">
+<div class="flex flex-col items-center justify-center text-white/30 hover:text-white/60 pb-1 hover:bg-white/5 transition-all duration-300 active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">lock_open</span>
+<span class="font-['Space_Grotesk'] text-[10px] tracking-tighter uppercase mt-1">Vault</span>
+</div>
+<div class="flex flex-col items-center justify-center text-white/30 hover:text-white/60 pb-1 hover:bg-white/5 transition-all duration-300 active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">vpn_key</span>
+<span class="font-['Space_Grotesk'] text-[10px] tracking-tighter uppercase mt-1">Keys</span>
+</div>
+<div class="flex flex-col items-center justify-center text-white/30 hover:text-white/60 pb-1 hover:bg-white/5 transition-all duration-300 active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">security</span>
+<span class="font-['Space_Grotesk'] text-[10px] tracking-tighter uppercase mt-1">Shield</span>
+</div>
+<div class="flex flex-col items-center justify-center text-cyan-400 drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] border-b-2 border-cyan-400 pb-1 hover:bg-white/5 transition-all duration-300 active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Space_Grotesk'] text-[10px] tracking-tighter uppercase mt-1">Settings</span>
+</div>
+</nav>
+</body></html>

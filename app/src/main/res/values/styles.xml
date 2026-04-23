@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Heading Styles (Orbitron) -->
+    <style name="VaultX.Heading.Display" parent="">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="VaultX.Heading.Large" parent="">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <style name="VaultX.Heading.Medium" parent="">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <style name="VaultX.Heading.Small" parent="">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <!-- App Title (Toolbar / Header) -->
+    <style name="VaultX.AppTitle">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/vx_cyan</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Body Text (Inter) -->
+    <style name="VaultX.Body.Large" parent="">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+    </style>
+
+    <style name="VaultX.Body.Medium" parent="">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+    </style>
+
+    <style name="VaultX.Body.Small" parent="">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/vx_text_secondary</item>
+    </style>
+
+    <!-- Label (Terminal / Metadata) -->
+    <style name="VaultX.Label">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/vx_cyan</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <style name="VaultX.Label.Muted">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/vx_text_muted</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="VaultX.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="backgroundTint">@color/vx_cyan</item>
+        <item name="android:textColor">@color/vx_background</item>
+        <item name="cornerRadius">@dimen/radius_sm</item>
+    </style>
+
+    <style name="VaultX.Button.Secondary" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="backgroundTint">@color/vx_purple</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/radius_sm</item>
+    </style>
+
+    <style name="VaultX.Button.Danger" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="backgroundTint">@color/vx_red_10</item>
+        <item name="android:textColor">@color/vx_red</item>
+        <item name="cornerRadius">@dimen/radius_sm</item>
+        <item name="strokeColor">@color/vx_red</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="VaultX.Button.Ghost" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textColor">@color/vx_text_primary</item>
+        <item name="strokeColor">@color/vx_outline</item>
+        <item name="cornerRadius">@dimen/radius_sm</item>
+    </style>
+
+    <!-- Input Style -->
+    <style name="VaultX.Input" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/vx_surface_container</item>
+        <item name="boxStrokeColor">@color/vx_cyan_30</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/vx_cyan</item>
+        <item name="android:textColorHint">@color/vx_text_muted</item>
+        <item name="boxCornerRadiusTopStart">@dimen/radius_sm</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/radius_sm</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/radius_sm</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/radius_sm</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="VaultX.GlassCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/vx_glass_fill</item>
+        <item name="cardCornerRadius">@dimen/radius_md</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/vx_glass_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+    </style>
+
+    <!-- Chip Style -->
+    <style name="VaultX.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="chipBackgroundColor">@color/vx_surface_container_highest</item>
+        <item name="chipStrokeColor">@color/vx_outline</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">@dimen/radius_xs</item>
+        <item name="android:textColor">@color/vx_text_secondary</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+    <!-- Style Fallbacks from Agent 1 -->
+    <style name="VaultX.Heading" parent="VaultX.Heading.Medium" />
+    <style name="VaultX.Body" parent="VaultX.Body.Medium" />
+    <style name="VaultX" parent="Theme.VaultX" />
+</resources>

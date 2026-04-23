@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- VaultX Cyberpunk Palette -->
+    <color name="vx_background">#0D0D12</color>
+    <color name="vx_background_alt">#0E0E13</color>
+    <color name="vx_surface">#14141B</color>
+    <color name="vx_surface_container">#1A1A22</color>
+    <color name="vx_surface_container_high">#20202A</color>
+    <color name="vx_surface_container_highest">#25252C</color>
+
+    <!-- Primary: Electric Cyan -->
+    <color name="vx_cyan">#00F0FF</color>
+    <color name="vx_cyan_light">#8FF5FF</color>
+    <color name="vx_cyan_dim">#00A0AA</color>
+    <color name="vx_cyan_10">#1A00F0FF</color>
+    <color name="vx_cyan_20">#3300F0FF</color>
+    <color name="vx_cyan_30">#4D00F0FF</color>
+
+    <!-- Secondary: Vibrant Purple -->
+    <color name="vx_purple">#9B6DFF</color>
+    <color name="vx_purple_light">#AD89FF</color>
+    <color name="vx_purple_dim">#6B3FCC</color>
+    <color name="vx_purple_10">#1A9B6DFF</color>
+
+    <!-- Error: Red -->
+    <color name="vx_red">#FF4D6D</color>
+    <color name="vx_red_dim">#CC2244</color>
+    <color name="vx_red_10">#1AFF4D6D</color>
+
+    <!-- Text Colors -->
+    <color name="vx_text_primary">#FFFFFF</color>
+    <color name="vx_text_secondary">#B0B0BF</color>
+    <color name="vx_text_muted">#8A8A9A</color>
+    <color name="vx_text_disabled">#55555F</color>
+
+    <!-- Utility -->
+    <color name="vx_glass_fill">#0DFFFFFF</color>
+    <color name="vx_glass_border">#33FFFFFF</color>
+    <color name="vx_outline">#26FFFFFF</color>
+    <color name="vx_divider">#1AFFFFFF</color>
+    <color name="vx_ripple">#2000F0FF</color>
+
+    <!-- Category Colors -->
+    <color name="vx_social">#00F0FF</color>
+    <color name="vx_banking">#9B6DFF</color>
+    <color name="vx_work">#00CC88</color>
+    <color name="vx_others">#8A8A9A</color>
+    <color name="vx_green">#00FF00</color>
+
+    <!-- Status Bar -->
+    <color name="vx_status_bar">#0D0D12</color>
+    <color name="vx_nav_bar">#0D0D12</color>
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VaultX</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">ENCRYPTED. SECURED. YOURS.</string>
+    <string name="splash_loading">INITIALIZING NEURAL LINK…</string>
+
+    <!-- Auth -->
+    <string name="tab_login">LOGIN</string>
+    <string name="tab_register">REGISTER</string>
+    <string name="hint_email">ACCESS_IDENTIFIER</string>
+    <string name="hint_password">ENCRYPTION_KEY</string>
+    <string name="hint_name">NODE_ALIAS</string>
+    <string name="hint_confirm_password">CONFIRM_ENCRYPTION_KEY</string>
+    <string name="btn_login">INITIALIZE_SESSION</string>
+    <string name="btn_register">CREATE_NODE</string>
+    <string name="btn_google_signin">AUTHENTICATE_GOOGLE</string>
+    <string name="google_signin_unavailable">Google Sign-In is not configured in Firebase yet.</string>
+    <string name="google_signin_setup_incomplete">Google Sign-In is not fully configured. Add your app SHA fingerprints in Firebase, enable the Google provider, then download a fresh app/google-services.json.</string>
+    <string name="google_signin_no_account">No Google account is available on this device for sign-in.</string>
+    <string name="google_signin_cancelled">Google Sign-In was cancelled.</string>
+    <string name="google_signin_failed">Google Sign-In failed. Please try again.</string>
+    <string name="google_signin_failed_message">Google Sign-In failed: %1$s</string>
+    <string name="or_divider">OR_LINK_VIA</string>
+    <string name="remember_me">REMEMBER_NODE</string>
+    <string name="forgot_password">RECOVER_ACCESS?</string>
+    <string name="encryption_status">ENCRYPTION STATUS: AES-256-GCM ACTIVE</string>
+
+    <!-- Dashboard -->
+    <string name="system_online">SYSTEM ONLINE</string>
+    <string name="welcome_back">WELCOME BACK,\n%s</string>
+    <string name="search_hint">ENCRYPTED SEARCH…</string>
+    <string name="empty_state_title">NO CREDENTIALS STORED</string>
+    <string name="dashboard_logout">LOGOUT</string>
+    <string name="empty_state_subtitle">Tap + to add your first secure credential</string>
+
+    <!-- Add/Edit Password -->
+    <string name="add_title">ADD NEW CREDENTIAL</string>
+    <string name="edit_title">EDIT CREDENTIAL</string>
+    <string name="secure_kernel">SECURE KERNEL</string>
+    <string name="hint_app_name">APPLICATION / ENDPOINT</string>
+    <string name="hint_username">IDENTITY / EMAIL</string>
+    <string name="hint_access_key">ACCESS KEY</string>
+    <string name="hint_url">ENDPOINT URL</string>
+    <string name="hint_notes">Enter security notes or recovery hints…</string>
+    <string name="label_notes">ADDITIONAL LOGS (OPTIONAL)</string>
+    <string name="label_category">SECURITY PARTITION</string>
+    <string name="btn_generate_password">GENERATE PASSWORD</string>
+    <string name="btn_save">INITIATE ENCRYPTION &amp; SAVE</string>
+    <string name="btn_update">UPDATE ENCRYPTED RECORD</string>
+
+    <!-- Categories -->
+    <string name="category_social">SOCIAL</string>
+    <string name="category_banking">BANKING</string>
+    <string name="category_work">WORK</string>
+    <string name="category_others">OTHERS</string>
+
+    <!-- Password Detail -->
+    <string name="label_terminal_id">TERMINAL ID</string>
+    <string name="label_access_cipher">ACCESS CIPHER</string>
+    <string name="label_endpoint_url">ENDPOINT URL</string>
+    <string name="label_last_rotation">LAST ROTATION</string>
+    <string name="btn_edit_record">EDIT RECORD</string>
+    <string name="btn_purge_data">PURGE DATA</string>
+    <string name="btn_export">EXPORT ENCRYPTED</string>
+    <string name="copied_to_clipboard">Copied to secure buffer</string>
+    <string name="delete_confirm_title">PURGE CONFIRMATION</string>
+    <string name="delete_confirm_message">This action will permanently delete this credential from the vault. This cannot be undone.</string>
+
+    <!-- Password Generator -->
+    <string name="generator_title">SECURE OUTPUT CHANNEL [V2.4]</string>
+    <string name="label_character_length">CHARACTER LENGTH</string>
+    <string name="label_parameters">PARAMETERS</string>
+    <string name="param_uppercase">Uppercase (A-Z)</string>
+    <string name="param_numbers">Numbers (0-9)</string>
+    <string name="param_symbols">Symbols (!@#$)</string>
+    <string name="label_strength">ENCRYPTION STRENGTH:</string>
+    <string name="btn_copy_password">COPY PASSWORD</string>
+    <string name="btn_use_password">USE THIS PASSWORD</string>
+    <string name="generator_warning_title">LOCAL ENCRYPTION WARNING</string>
+    <string name="generator_warning_body">Generated seeds are processed entirely within your local secure enclave. No data is transmitted to VaultX servers during the generation sequence.</string>
+
+    <!-- Settings -->
+    <string name="label_security_protocol">SECURITY PROTOCOL</string>
+    <string name="change_master_password">Change Master Password</string>
+    <string name="app_lock">App Lock</string>
+    <string name="biometric_auth">BIOMETRIC AUTHENTICATION</string>
+    <string name="label_environment">ENVIRONMENT</string>
+    <string name="theme_label">Theme</string>
+    <string name="theme_value">CYBER-OBSIDIAN (DARK)</string>
+    <string name="about_label">About</string>
+    <string name="about_version">VERSION 2.4.0-STABLE</string>
+    <string name="btn_logout">TERMINATE SESSION</string>
+
+    <!-- Bottom Nav -->
+    <string name="nav_vault">VAULT</string>
+    <string name="nav_keys">KEYS</string>
+    <string name="nav_security">SECURITY</string>
+    <string name="nav_settings">SETTINGS</string>
+
+    <!-- General -->
+    <string name="error_generic">An error occurred. Please try again.</string>
+    <string name="loading">Processing…</string>
+</resources>

@@ -1,0 +1,92 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidUserDoc(userId) {
+      return request.resource.data.keys().hasOnly(['uid', 'name', 'email', 'createdAt'])
+        && request.resource.data.uid == userId
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.createdAt is int;
+    }
+
+    function isValidPasswordDoc(userId, passwordId) {
+      return request.resource.data.keys().hasOnly([
+               'id', 'userId', 'title', 'username',
+               'encryptedPassword', 'url', 'category', 'notes', 'createdAt'
+             ])
+        && request.resource.data.id == passwordId
+        && request.resource.data.userId == userId
+        && request.resource.data.title is string
+        && request.resource.data.username is string
+        && request.resource.data.encryptedPassword is string
+        && request.resource.data.url is string
+        && request.resource.data.notes is string
+        && request.resource.data.category in ['SOCIAL', 'BANKING', 'WORK', 'OTHERS']
+        && request.resource.data.createdAt is int;
+    }
+
+    // ============================================================
+    // USER DOCUMENTS
+    // Path: /users/{userId}
+    // Only the authenticated owner can read/write their own document.
+    // ============================================================
+    match /users/{userId} {
+
+      // Only allow access if the requesting user's UID matches the document's userId
+      allow read: if isOwner(userId);
+
+      // Allow create with required field validation
+      allow create: if isOwner(userId) && isValidUserDoc(userId);
+
+      // Allow update with required field validation
+      allow update: if isOwner(userId)
+                    && resource.data.uid == userId
+                    && request.resource.data.createdAt == resource.data.createdAt
+                    && isValidUserDoc(userId);
+
+      // Allow delete only by the owner
+      allow delete: if isOwner(userId);
+
+      // ============================================================
+      // PASSWORD ENTRIES (sub-collection)
+      // Path: /users/{userId}/passwords/{passwordId}
+      // Only the authenticated owner can access their password entries.
+      // ============================================================
+      match /passwords/{passwordId} {
+
+        // Only the owner can read their passwords
+        allow read: if isOwner(userId);
+
+        // Allow create with required field validation
+        allow create: if isOwner(userId)
+                      && isValidPasswordDoc(userId, passwordId);
+
+        // Allow update with same validations
+        allow update: if isOwner(userId)
+                      && resource.data.userId == userId
+                      && request.resource.data.createdAt == resource.data.createdAt
+                      && isValidPasswordDoc(userId, passwordId);
+
+        // Allow delete only by the owner
+        allow delete: if isOwner(userId);
+      }
+    }
+
+    // ============================================================
+    // DEFAULT: Deny all access to any path not explicitly matched.
+    // This blocks unauthenticated users and prevents cross-user access.
+    // ============================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
