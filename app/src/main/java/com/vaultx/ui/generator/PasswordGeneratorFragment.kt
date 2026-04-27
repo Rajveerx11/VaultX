@@ -1,8 +1,5 @@
 package com.vaultx.ui.generator
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.vaultx.R
 import com.vaultx.databinding.FragmentPasswordGeneratorBinding
 import com.vaultx.ui.addedit.AddEditPasswordFragment
+import com.vaultx.utils.ClipboardSecurity
 import com.google.android.material.snackbar.Snackbar
 
 class PasswordGeneratorFragment : Fragment() {
@@ -67,8 +65,7 @@ class PasswordGeneratorFragment : Fragment() {
         binding.btnCopy.setOnClickListener {
             val pass = binding.tvGeneratedPassword.text.toString()
             if (pass.isNotEmpty()) {
-                val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                clipboard.setPrimaryClip(ClipData.newPlainText("password", pass))
+                ClipboardSecurity.copySensitiveText(requireContext(), "VaultX generated password", pass)
                 Snackbar.make(binding.root, R.string.copied_to_clipboard, Snackbar.LENGTH_SHORT)
                     .setBackgroundTint(resources.getColor(R.color.vx_surface_container_highest, null))
                     .setTextColor(resources.getColor(R.color.vx_cyan, null))

@@ -22,6 +22,7 @@ object ClipboardSecurity {
     private fun clearIfUnchanged(context: Context, label: String, text: String) {
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val currentClip = clipboard.primaryClip ?: return
+        if (currentClip.itemCount == 0) return
         val currentLabel = currentClip.description.label?.toString()
         val currentText = currentClip.getItemAt(0)?.coerceToText(context)?.toString()
 
