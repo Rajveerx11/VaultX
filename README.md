@@ -58,6 +58,9 @@ The result is a practical, beginner-friendly password manager architecture that 
 - Add, edit, delete, and search password entries
 - Local password generation with strength controls
 - Biometric lock for session protection
+- Cold-launch biometric gate before vault access when biometric lock is enabled
+- Secure clipboard handling with automatic cleanup for copied passwords
+- Screenshot and recents-preview blocking on sensitive app screens
 - Per-user encrypted storage in Firestore
 - ViewModel + Repository flow for clean state handling
 
@@ -71,8 +74,8 @@ Think of VaultX in four layers:
    Screens collect user input and render results.
 2. **Repository Layer**  
    Handles business logic and cloud operations.
-3. **Security Layer** (`CryptoManager`)  
-   Encrypts/decrypts sensitive values using Android Keystore keys.
+3. **Security Layer** (`CryptoManager`, `ClipboardSecurity`)  
+   Encrypts/decrypts sensitive values using Android Keystore keys and centralizes sensitive clipboard handling.
 4. **Cloud Layer** (Firebase Auth + Firestore + Rules)  
    Authenticates users and stores only encrypted credential payloads.
 
@@ -148,7 +151,7 @@ VaultX/
 ├─ FIREBASE_SETUP.md
 ├─ FIRESTORE_SCHEMA.md
 ├─ README.md
-└─ Contribution.md
+└─ CONTRIBUTING.md
 ```
 
 ---
@@ -170,9 +173,19 @@ VaultX/
 
 ### Local Device Safety
 
-- Biometric gate can protect resumed sessions
+- Biometric gate protects resumed sessions and cold launch access when enabled
+- Sensitive screens use `FLAG_SECURE` to block screenshots and app-switcher previews
+- Password generation uses `SecureRandom`
+- Copied passwords are placed on the clipboard through `ClipboardSecurity` and cleared after a short timeout if unchanged
 - App backup disabled (`android:allowBackup="false"`)
+- Auth debug logs are not emitted for Google sign-in flow
 - No hardcoded signing secrets in Gradle
+
+### Current Limits
+
+- Clipboard contents may still be visible to the operating system and keyboard/clipboard services during the timeout window.
+- Biometric lock protects app access, but encryption keys are not yet bound to biometric authentication.
+- Firebase API keys in `google-services.json` are configuration identifiers, not signing secrets, but they should still be restricted in Firebase/Google Cloud settings.
 
 ---
 
@@ -250,7 +263,7 @@ erDiagram
 
 - Build debug APK: `./gradlew.bat :app:assembleDebug`
 - Run all unit tests: `./gradlew.bat test`
-- Run lint: `./gradlew.bat lint`
+- Run lint: `./gradlew.bat :app:lintDebug`
 
 ### Android tests
 
@@ -299,14 +312,15 @@ More details:
 - [ ] Add CI (build + test + lint on pull requests)
 - [ ] Improve test coverage for repositories and ViewModels
 - [ ] Add password breach checks (optional)
-- [ ] Add secure clipboard auto-clear timer
+- [ ] Bind encryption key usage to biometric/device authentication
+- [ ] Add automated security regression tests for lock, clipboard, and generator behavior
 
 ---
 
 ## Contributing
 
 Contributions are welcome.  
-Read `Contribution.md` for full workflow, coding guidelines, and security expectations.
+Read `CONTRIBUTING.md` for full workflow, coding guidelines, and security expectations.
 
 ---
 

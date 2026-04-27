@@ -143,6 +143,7 @@ Your PR should include:
 - Screenshots/video for UI changes
 - Testing evidence
 - Security impact analysis if relevant
+- Confirmation that sensitive clipboard, biometric lock, logging, and screenshot behavior were considered when relevant
 - Rollback notes for risky changes
 
 Use this mini template:
@@ -164,6 +165,7 @@ Use this mini template:
 - Keep Fragments thin; push logic to ViewModel/Repository
 - Reuse existing `Resource` state pattern
 - Avoid duplicate utility logic
+- Use centralized helpers such as `ClipboardSecurity` for sensitive clipboard writes
 - Prefer composable functions over large monolith methods
 - Remove dead code and stale TODOs when touching related areas
 
@@ -186,7 +188,12 @@ Any PR touching auth, crypto, persistence, or cloud access gets stricter review.
 ### Never do
 
 - Log plaintext passwords or tokens
+- Log Firebase UIDs, ID tokens, auth tokens, decrypted passwords, or full exception traces from sensitive auth flows
 - Store raw password values in Firestore
+- Copy passwords directly with `ClipboardManager`; use `ClipboardSecurity.copySensitiveText`
+- Generate passwords with non-cryptographic randomness
+- Remove `FLAG_SECURE` from sensitive vault screens without a documented product/security reason
+- Bypass biometric checks on cold launch or resume when biometric lock is enabled
 - Loosen Firestore rules without justification + tests
 - Disable security checks for convenience
 
@@ -195,6 +202,13 @@ Any PR touching auth, crypto, persistence, or cloud access gets stricter review.
 - Explain threat impact in PR
 - Add or update tests
 - Keep changes scoped and reviewer-friendly
+
+### If touching password generation or clipboard behavior
+
+- Use `java.security.SecureRandom` for password generation
+- Keep generated passwords compatible with the existing length and character-class controls
+- Route password copy actions through `ClipboardSecurity`
+- Preserve the timeout-based clipboard clear unless replacing it with a safer approach
 
 ---
 
@@ -205,7 +219,7 @@ Update docs when behavior changes:
 - `README.md` for user-facing behavior/setup
 - `FIREBASE_SETUP.md` for config changes
 - `FIRESTORE_SCHEMA.md` for model/schema changes
-- `Contribution.md` for process updates
+- `CONTRIBUTING.md` for process updates
 
 If docs are not updated, mention why in PR.
 
@@ -217,7 +231,7 @@ Before opening a PR, run as many as applicable:
 
 - `./gradlew.bat :app:assembleDebug`
 - `./gradlew.bat test`
-- `./gradlew.bat lint`
+- `./gradlew.bat :app:lintDebug`
 - `./gradlew.bat connectedAndroidTest` (if device/emulator available)
 
 In PR description:
