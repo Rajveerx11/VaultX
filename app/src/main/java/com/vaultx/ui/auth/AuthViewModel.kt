@@ -1,6 +1,5 @@
 package com.vaultx.ui.auth
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -75,9 +74,7 @@ class AuthViewModel : ViewModel() {
         _authResult.value = Resource.Loading
         viewModelScope.launch {
             try {
-                Log.d(TAG, "ViewModel signInWithGoogle started")
                 val result = authRepository.loginWithGoogle(idToken)
-                Log.d(TAG, "ViewModel signInWithGoogle result=${result::class.java.simpleName}")
                 if (result is Resource.Success) {
                     preferencesManager.saveUserLoggedIn(true)
                     result.data.let { user ->
@@ -89,7 +86,6 @@ class AuthViewModel : ViewModel() {
                 }
                 _authResult.value = result
             } catch (e: CancellationException) {
-                Log.e(TAG, "ViewModel signInWithGoogle cancelled", e)
                 _authResult.value = Resource.Error(
                     e.message ?: "Google sign-in timed out. Please check your connection and try again."
                 )

@@ -3,8 +3,10 @@ package com.vaultx.ui.generator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.security.SecureRandom
 
 class GeneratorViewModel : ViewModel() {
+    private val secureRandom = SecureRandom()
 
     private val _generatedPassword = MutableLiveData<String>()
     val generatedPassword: LiveData<String> = _generatedPassword
@@ -42,20 +44,33 @@ class GeneratorViewModel : ViewModel() {
 
         val sb = java.lang.StringBuilder(length)
         // Ensure at least one character from each selected pool if length permits
-        if (useUpper && length > sb.length) sb.append(uppercase.random())
-        if (useLower && length > sb.length) sb.append(lowercase.random())
-        if (useNumbers && length > sb.length) sb.append(numbers.random())
-        if (useSymbols && length > sb.length) sb.append(symbols.random())
+        if (useUpper && length > sb.length) sb.append(secureRandomChar(uppercase))
+        if (useLower && length > sb.length) sb.append(secureRandomChar(lowercase))
+        if (useNumbers && length > sb.length) sb.append(secureRandomChar(numbers))
+        if (useSymbols && length > sb.length) sb.append(secureRandomChar(symbols))
 
         val remainingLength = length - sb.length
         for (i in 0 until remainingLength) {
-            sb.append(characterPool.random())
+            sb.append(secureRandomChar(characterPool))
         }
 
-        val result = sb.toString().toCharArray().apply { shuffle() }.concatToString()
+        val result = sb.toString().toCharArray().apply { secureShuffle() }.concatToString()
         _generatedPassword.value = result
 
         calculateStrength(result)
+    }
+
+    private fun secureRandomChar(pool: String): Char {
+        return pool[secureRandom.nextInt(pool.length)]
+    }
+
+    private fun CharArray.secureShuffle() {
+        for (i in lastIndex downTo 1) {
+            val j = secureRandom.nextInt(i + 1)
+            val tmp = this[i]
+            this[i] = this[j]
+            this[j] = tmp
+        }
     }
 
     private fun calculateStrength(password: String) {

@@ -1,8 +1,5 @@
 package com.vaultx.ui.detail
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +13,7 @@ import com.vaultx.R
 import com.vaultx.databinding.FragmentPasswordDetailBinding
 import com.vaultx.data.model.Category
 import com.vaultx.data.model.Resource
+import com.vaultx.utils.ClipboardSecurity
 import com.google.android.material.snackbar.Snackbar
 
 class PasswordDetailFragment : Fragment() {
@@ -146,8 +144,7 @@ class PasswordDetailFragment : Fragment() {
     }
 
     private fun copyToClipboard(label: String, text: String) {
-        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.setPrimaryClip(ClipData.newPlainText(label, text))
+        ClipboardSecurity.copySensitiveText(requireContext(), "VaultX $label", text)
         Snackbar.make(binding.root, "$label copied", Snackbar.LENGTH_SHORT)
             .setBackgroundTint(resources.getColor(R.color.vx_surface_container_highest, null))
             .setTextColor(resources.getColor(R.color.vx_cyan, null))

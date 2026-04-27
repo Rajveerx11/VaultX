@@ -40,10 +40,22 @@ class SplashFragment : Fragment() {
                 return@launch
             }
 
-            if (AppModule.authRepository.isUserLoggedIn()) {
-                navController.navigate(R.id.action_splash_to_dashboard)
-            } else {
+            if (!AppModule.authRepository.isUserLoggedIn()) {
                 navController.navigate(R.id.action_splash_to_auth)
+            } else if (AppModule.preferencesManager.isBiometricEnabled()) {
+                AppModule.biometricHelper.showBiometricPrompt(
+                    activity = requireActivity(),
+                    onSuccess = {
+                        if (isAdded && navController.currentDestination?.id == R.id.splashFragment) {
+                            navController.navigate(R.id.action_splash_to_dashboard)
+                        }
+                    },
+                    onError = {
+                        activity?.finish()
+                    }
+                )
+            } else {
+                navController.navigate(R.id.action_splash_to_dashboard)
             }
         }
     }

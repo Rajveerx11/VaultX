@@ -1,8 +1,5 @@
 package com.vaultx.ui.dashboard
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +17,7 @@ import com.vaultx.R
 import com.vaultx.databinding.FragmentDashboardBinding
 import com.vaultx.data.model.PasswordEntry
 import com.vaultx.data.model.Resource
+import com.vaultx.utils.ClipboardSecurity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -128,8 +126,7 @@ class DashboardFragment : Fragment() {
 
     private fun copyPasswordToClipboard(entry: PasswordEntry) {
         val decrypted = viewModel.decryptPassword(entry.encryptedPassword)
-        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.setPrimaryClip(ClipData.newPlainText("password", decrypted))
+        ClipboardSecurity.copySensitiveText(requireContext(), "VaultX password", decrypted)
         Snackbar.make(binding.root, R.string.copied_to_clipboard, Snackbar.LENGTH_SHORT)
             .setBackgroundTint(resources.getColor(R.color.vx_surface_container_highest, null))
             .setTextColor(resources.getColor(R.color.vx_cyan, null))

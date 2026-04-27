@@ -1,6 +1,5 @@
 package com.vaultx.data.repository
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -127,14 +126,12 @@ class AuthRepository(
      */
     suspend fun loginWithGoogle(idToken: String): Resource<User> {
         return try {
-            Log.d(TAG, "Repository loginWithGoogle start")
             val credential = GoogleAuthProvider.getCredential(idToken, null)
             val result = withTimeout(AUTH_TIMEOUT_MS) {
                 auth.signInWithCredential(credential).await()
             }
             val firebaseUser = result.user
                 ?: return Resource.Error("Google sign-in failed: user is null")
-            Log.d(TAG, "Firebase auth success uid=${firebaseUser.uid}")
 
             val firestore = FirebaseFirestore.getInstance()
             val userDoc = withTimeout(FIRESTORE_TIMEOUT_MS) {
@@ -144,7 +141,6 @@ class AuthRepository(
                     .get()
                     .await()
             }
-            Log.d(TAG, "Firestore fetch exists=${userDoc.exists()}")
 
             val user: User
             if (userDoc.exists()) {
@@ -153,7 +149,6 @@ class AuthRepository(
                     ?: return Resource.Error("Failed to parse user profile")
             } else {
                 // First-time Google login — create user document
-                Log.d(TAG, "Creating Google user document")
                 user = User(
                     uid = firebaseUser.uid,
                     name = firebaseUser.displayName ?: "",
@@ -169,10 +164,8 @@ class AuthRepository(
                 }
             }
 
-            Log.d(TAG, "Repository loginWithGoogle success")
             Resource.Success(user)
         } catch (e: Exception) {
-            Log.e(TAG, "Repository loginWithGoogle failed", e)
             Resource.Error(e.message ?: "Google sign-in failed")
         }
     }
