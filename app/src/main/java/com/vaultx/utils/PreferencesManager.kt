@@ -18,6 +18,8 @@ class PreferencesManager(context: Context) {
         private const val KEY_BIOMETRIC_ENABLED = "biometric_enabled"
         private const val KEY_USER_NAME = "user_name"
         private const val KEY_USER_EMAIL = "user_email"
+        private const val KEY_AUTO_LOCK_TIMEOUT = "auto_lock_timeout"
+        private const val KEY_LAST_ACTIVE_TIME = "last_active_time"
     }
 
     private val prefs: SharedPreferences =
@@ -57,6 +59,26 @@ class PreferencesManager(context: Context) {
      */
     fun isBiometricEnabled(): Boolean {
         return prefs.getBoolean(KEY_BIOMETRIC_ENABLED, false)
+    }
+
+    /**
+     * Saves the auto-lock timeout in minutes.
+     * 0 means immediate, -1 means never.
+     */
+    fun saveAutoLockTimeout(minutes: Int) {
+        prefs.edit().putInt(KEY_AUTO_LOCK_TIMEOUT, minutes).apply()
+    }
+
+    fun getAutoLockTimeout(): Int {
+        return prefs.getInt(KEY_AUTO_LOCK_TIMEOUT, 5) // Default to 5 minutes
+    }
+
+    fun saveLastActiveTime(timeMillis: Long) {
+        prefs.edit().putLong(KEY_LAST_ACTIVE_TIME, timeMillis).apply()
+    }
+
+    fun getLastActiveTime(): Long {
+        return prefs.getLong(KEY_LAST_ACTIVE_TIME, 0L)
     }
 
     /**
