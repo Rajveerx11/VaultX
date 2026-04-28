@@ -242,6 +242,7 @@ class PasswordRepository(
         notes: String
     ): Resource<Boolean> {
         val entry = PasswordEntry(
+            userId = uid,
             title = title,
             username = username,
             encryptedPassword = rawPassword,
@@ -249,7 +250,7 @@ class PasswordRepository(
             category = category,
             notes = notes
         )
-        return addPasswordEntry(uid, entry)
+        return savePassword(entry)
     }
 
     suspend fun updatePassword(
