@@ -151,7 +151,9 @@ class PasswordRepository(
      */
     suspend fun savePassword(entry: PasswordEntry): Resource<Boolean> {
         return try {
-            val uid = entry.userId.ifEmpty { firestore.app.options.projectId ?: "" } // Better to pass UID but fallback
+            val uid = entry.userId
+            if (uid.isEmpty()) return Resource.Error("User ID required")
+            
             val docRef = if (entry.id.isEmpty()) {
                 passwordsCollection(uid).document()
             } else {
@@ -271,6 +273,7 @@ class PasswordRepository(
 
         val entry = existingEntry.copy(
             id = passwordId,
+            userId = uid,
             title = title,
             username = username,
             encryptedPassword = rawPassword,
@@ -278,7 +281,7 @@ class PasswordRepository(
             category = category,
             notes = notes
         )
-        return updatePasswordEntry(uid, entry)
+        return savePassword(entry)
     }
 
     suspend fun deletePassword(uid: String, passwordId: String): Resource<Boolean> {
