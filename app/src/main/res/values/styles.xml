@@ -160,6 +160,17 @@
         <item name="android:textColor">@color/vx_text_secondary</item>
         <item name="checkedIconVisible">false</item>
     </style>
+
+    <!-- Dialog Style -->
+    <style name="VaultX.AlertDialog" parent="Theme.Material3.Dark.Dialog.Alert">
+        <item name="android:windowBackground">@color/vx_background</item>
+        <item name="colorSurface">@color/vx_background</item>
+        <item name="colorPrimary">@color/vx_cyan</item>
+        <item name="android:textColorPrimary">@color/vx_text_primary</item>
+        <item name="android:textColorSecondary">@color/vx_text_secondary</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
     <!-- Style Fallbacks from Agent 1 -->
     <style name="VaultX.Heading" parent="VaultX.Heading.Medium" />
     <style name="VaultX.Body" parent="VaultX.Body.Medium" />
