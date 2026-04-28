@@ -230,6 +230,18 @@ class PasswordRepository(
         return getPasswordEntries(uid)
     }
 
+    suspend fun getAllPasswordsOnce(uid: String): List<PasswordEntry> {
+        return try {
+            val snapshot = passwordsCollection(uid)
+                .orderBy("createdAt", Query.Direction.DESCENDING)
+                .get()
+                .await()
+            snapshot.documents.mapNotNull { doc -> PasswordEntry.fromDocument(doc) }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
     suspend fun getPasswordById(uid: String, passwordId: String): Resource<PasswordEntry> {
         return getPasswordEntryById(uid, passwordId)
     }

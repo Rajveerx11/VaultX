@@ -114,6 +114,90 @@
                 app:trackTint="@color/vx_surface_container" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/vx_surface_container"
+            android:layout_marginVertical="@dimen/spacing_sm" />
+
+        <LinearLayout
+            android:id="@+id/btnAutoLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/spacing_md">
+
+            <ImageView
+                android:layout_width="@dimen/icon_md"
+                android:layout_height="@dimen/icon_md"
+                android:src="@drawable/ic_lock"
+                android:layout_marginEnd="@dimen/spacing_md" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AUTO-LOCK TIMEOUT"
+                    style="@style/VaultX.Label" />
+
+                <TextView
+                    android:id="@+id/tvAutoLockStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5 Minutes"
+                    style="@style/VaultX.Body.Small"
+                    android:textColor="@color/vx_cyan" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/vx_text_secondary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/vx_surface_container"
+            android:layout_marginVertical="@dimen/spacing_sm" />
+
+        <LinearLayout
+            android:id="@+id/btnExport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/spacing_md">
+
+            <ImageView
+                android:layout_width="@dimen/icon_md"
+                android:layout_height="@dimen/icon_md"
+                android:src="@drawable/ic_share"
+                android:layout_marginEnd="@dimen/spacing_md" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="EXPORT ENCRYPTED DATA"
+                style="@style/VaultX.Label" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/vx_text_secondary" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <View

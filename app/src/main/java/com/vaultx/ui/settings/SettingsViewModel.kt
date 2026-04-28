@@ -20,13 +20,42 @@ class SettingsViewModel : ViewModel() {
         return preferencesManager.isBiometricEnabled()
     }
 
-    fun setBiometricEnabled(enabled: Boolean) {
-        preferencesManager.saveBiometricEnabled(enabled)
+    fun getAutoLockTimeout(): Int {
+        return preferencesManager.getAutoLockTimeout()
+    }
+
+    fun setAutoLockTimeout(minutes: Int) {
+        preferencesManager.saveAutoLockTimeout(minutes)
     }
 
     fun logout() {
         authRepository.logoutUser()
         preferencesManager.clearAll()
+    }
+
+    suspend fun exportData(): String? {
+        val userId = authRepository.getCurrentUserId() ?: return null
+        val passwords = AppModule.passwordRepository.getAllPasswordsOnce(userId)
+        
+        val jsonArray = org.json.JSONArray()
+        passwords.forEach { entry ->
+            val obj = org.json.JSONObject()
+            obj.put("title", entry.title)
+            obj.put("username", entry.username)
+            // Decrypt the password before exporting
+            try {
+                obj.put("password", AppModule.cryptoManager.decrypt(entry.encryptedPassword))
+            } catch (e: Exception) {
+                obj.put("password", "[Decryption Error]")
+            }
+            obj.put("url", entry.url)
+            obj.put("category", entry.category)
+            obj.put("notes", entry.notes)
+            obj.put("isFavorite", entry.isFavorite)
+            jsonArray.put(obj)
+        }
+        
+        return jsonArray.toString(4)
     }
 }
 

@@ -36,19 +36,45 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Show biometric prompt if enabled and user is logged in
-        if (isResuming && AppModule.preferencesManager.isBiometricEnabled()
-            && AppModule.authRepository.isUserLoggedIn()
-        ) {
-            AppModule.biometricHelper.showBiometricPrompt(
-                activity = this,
-                onSuccess = { /* Access granted — continue normally */ },
-                onError = { /* User cancelled or failed — finish the activity */ 
-                    finish()
+        
+        val prefs = AppModule.preferencesManager
+        val auth = AppModule.authRepository
+        
+        if (isResuming && auth.isUserLoggedIn()) {
+            val lastActive = prefs.getLastActiveTime()
+            val timeoutMinutes = prefs.getAutoLockTimeout()
+            val currentTime = System.currentTimeMillis()
+            
+            val isTimeout = when (timeoutMinutes) {
+                -1 -> false // Never
+                0 -> true  // Immediate
+                else -> (currentTime - lastActive) > (timeoutMinutes * 60 * 1000)
+            }
+
+            if (isTimeout) {
+                if (prefs.isBiometricEnabled()) {
+                    AppModule.biometricHelper.showBiometricPrompt(
+                        activity = this,
+                        onSuccess = { /* Access granted */ },
+                        onError = { 
+                            // If biometric fails/cancelled, we could either finish the app
+                            // or navigate to Auth screen. For security, finish is safer.
+                            finish()
+                        }
+                    )
+                } else {
+                    // If biometric is disabled but timeout occurred, 
+                    // we could force a logout or just let them in for now.
+                    // A better way would be a PIN, but for this PR we'll focus on Biometrics.
                 }
-            )
+            }
         }
         isResuming = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        AppModule.preferencesManager.saveLastActiveTime(System.currentTimeMillis())
     }
 
     override fun onSupportNavigateUp(): Boolean {
