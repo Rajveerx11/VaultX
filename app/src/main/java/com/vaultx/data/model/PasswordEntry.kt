@@ -18,6 +18,7 @@ data class PasswordEntry(
     val url: String = "",
     val category: String = "",
     val notes: String = "",
+    val isFavorite: Boolean = false,
     val createdAt: Long = 0L
 ) {
     /**
@@ -32,6 +33,7 @@ data class PasswordEntry(
         "url" to url,
         "category" to category,
         "notes" to notes,
+        "isFavorite" to isFavorite,
         "createdAt" to createdAt
     )
 
@@ -51,6 +53,7 @@ data class PasswordEntry(
                     url = doc.getString("url") ?: "",
                     category = doc.getString("category") ?: "",
                     notes = doc.getString("notes") ?: "",
+                    isFavorite = doc.getBoolean("isFavorite") ?: false,
                     createdAt = doc.getLong("createdAt") ?: 0L
                 )
             } catch (e: Exception) {
