@@ -145,6 +145,33 @@ class PasswordRepository(
     }
 
     /**
+     * Saves a PasswordEntry. If entry.id is empty, it adds a new document.
+     * Otherwise, it updates the existing document.
+     * This method handles encryption of the password field.
+     */
+    suspend fun savePassword(entry: PasswordEntry): Resource<Boolean> {
+        return try {
+            val uid = entry.userId.ifEmpty { firestore.app.options.projectId ?: "" } // Better to pass UID but fallback
+            val docRef = if (entry.id.isEmpty()) {
+                passwordsCollection(uid).document()
+            } else {
+                passwordsCollection(uid).document(entry.id)
+            }
+
+            val encryptedEntry = entry.copy(
+                id = docRef.id,
+                encryptedPassword = cryptoManager.encrypt(entry.encryptedPassword),
+                createdAt = if (entry.createdAt == 0L) System.currentTimeMillis() else entry.createdAt
+            )
+
+            docRef.set(encryptedEntry.toMap()).await()
+            Resource.Success(true)
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "Failed to save password")
+        }
+    }
+
+    /**
      * Deletes a password entry document from Firestore.
      *
      * @param uid The authenticated user's UID.

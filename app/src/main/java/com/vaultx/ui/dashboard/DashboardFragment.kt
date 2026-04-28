@@ -48,9 +48,38 @@ class DashboardFragment : Fragment() {
         setupSearch()
         setupFAB()
         setupLogout()
+        setupAudit()
         observePasswords()
+        observeHealth()
 
         viewModel.loadPasswords()
+    }
+
+    private fun setupAudit() {
+        binding.btnAudit.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboard_to_audit)
+        }
+    }
+
+    private fun observeHealth() {
+        viewModel.vaultHealth.observe(viewLifecycleOwner) { result ->
+            binding.tvHealthScore.text = "${result.score}%"
+            val totalIssues = result.weakPasswords.size + result.reusedPasswords.size
+            
+            binding.tvHealthSummary.text = if (totalIssues == 0) {
+                "Your vault security is perfect!"
+            } else {
+                "Security alert: $totalIssues items need attention."
+            }
+
+            val color = when {
+                result.score >= 80 -> R.color.vx_green
+                result.score >= 50 -> R.color.vx_purple
+                else -> R.color.vx_red
+            }
+            binding.tvHealthScore.setTextColor(resources.getColor(color, null))
+            binding.ivHealthShield.imageTintList = android.content.res.ColorStateList.valueOf(resources.getColor(color, null))
+        }
     }
 
     private fun setupWelcome() {
