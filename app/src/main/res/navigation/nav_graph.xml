@@ -55,10 +55,24 @@
             android:id="@+id/action_dashboard_to_settings"
             app:destination="@id/settingsFragment" />
         <action
+            android:id="@+id/action_dashboard_to_audit"
+            app:destination="@id/auditFragment" />
+        <action
             android:id="@+id/action_dashboard_to_auth"
             app:destination="@id/authFragment"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Security Audit -->
+    <fragment
+        android:id="@+id/auditFragment"
+        android:name="com.vaultx.ui.audit.AuditFragment"
+        android:label="Security Audit"
+        tools:layout="@layout/fragment_audit">
+        <action
+            android:id="@+id/action_audit_to_detail"
+            app:destination="@id/passwordDetailFragment" />
     </fragment>
 
     <!-- Add / Edit Password -->
