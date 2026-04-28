@@ -52,6 +52,16 @@ class DashboardViewModel : ViewModel() {
         applyFilter()
     }
 
+    /**
+     * Toggles the favorite status of a password entry.
+     */
+    fun toggleFavorite(entry: PasswordEntry) {
+        viewModelScope.launch {
+            val updated = entry.copy(isFavorite = !entry.isFavorite)
+            passwordRepository.savePassword(updated)
+        }
+    }
+
     private fun applyFilter() {
         val filtered = if (currentQuery.isEmpty()) {
             allPasswords
@@ -61,7 +71,14 @@ class DashboardViewModel : ViewModel() {
                 it.username.contains(currentQuery, ignoreCase = true)
             }
         }
-        _passwords.value = Resource.Success(filtered)
+        
+        // Sort: Favorites first, then by title
+        val sorted = filtered.sortedWith(
+            compareByDescending<PasswordEntry> { it.isFavorite }
+                .thenBy { it.title.lowercase() }
+        )
+        
+        _passwords.value = Resource.Success(sorted)
     }
 
     /**

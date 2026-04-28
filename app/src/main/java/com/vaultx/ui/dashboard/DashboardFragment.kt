@@ -61,7 +61,8 @@ class DashboardFragment : Fragment() {
     private fun setupRecyclerView() {
         adapter = PasswordAdapter(
             onItemClick = { entry -> navigateToDetail(entry) },
-            onCopyClick = { entry -> copyPasswordToClipboard(entry) }
+            onCopyClick = { entry -> copyPasswordToClipboard(entry) },
+            onFavoriteClick = { entry -> viewModel.toggleFavorite(entry) }
         )
         binding.rvPasswords.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPasswords.adapter = adapter
